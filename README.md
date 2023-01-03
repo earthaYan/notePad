@@ -7,15 +7,17 @@ notePad后端
 ├── configs
 ├── deployments
 ├── docs
+├── githooks
+├── go.mod
 ├── init
 ├── internal
 │   └── pkg
+├── Makefile
 ├── pkg
 ├── README.md
 ├── scripts
 ├── third_party
-├── tools
-└── vendor
+└── tools
 # 项目目录结构
 ## Go目录
 ### /cmd
