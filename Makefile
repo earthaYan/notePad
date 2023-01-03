@@ -1,4 +1,4 @@
-include scripts/make-rules/common.mk
+include scripts/make-rules/common.mk # 必须在第一个
 ## help: Show this help info.
 .PHONY: help
 help: Makefile
