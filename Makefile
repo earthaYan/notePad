@@ -1,4 +1,4 @@
-
+include scripts/make-rules/common.mk
 ## help: Show this help info.
 .PHONY: help
 help: Makefile
