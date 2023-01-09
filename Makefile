@@ -8,7 +8,9 @@ VERSION_PACKAGE=github.com/marmotedu/component-base/pkg/version
 include scripts/make-rules/common.mk # 必须在第一个
 include scripts/make-rules/golang.mk 
 include scripts/make-rules/tools.mk 
-## help: Show this help info.
+include scripts/make-rules/gen.mk 
+
+##	help:	Show this help info.
 .PHONY: help
 help: Makefile
 	@echo -e "\nUsage: make <TARGETS> <OPTIONS> ...\n\nTargets:"
@@ -23,3 +25,8 @@ format:	tools.verify.golines tools.verify.goimports
 	@$(FIND) -type f -name '*.go' | $(XARGS) goimports -w -local $(ROOT_PACKAGE)
 	@$(FIND) -type f -name '*.go' | $(XARGS) golines -w --max-len=120 --reformat-tags --shorten-comments --ignore-generated .
 	@$(GO) mod edit -fmt
+
+##	gen:	Generate all necessary files, such as error code files.
+.PHONY: gen
+gen:
+	@$(MAKE) gen.run

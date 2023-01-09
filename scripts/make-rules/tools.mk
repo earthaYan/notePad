@@ -14,3 +14,7 @@ install.golines:
 .PHONY: install.goimports
 install.goimports:
 	@$(GO) install golang.org/x/tools/cmd/goimports@latest
+
+.PHONY: install.codegen
+install.codegen:
+	@$(GO) install ${ROOT_DIR}/tools/codegen/codegen.go
