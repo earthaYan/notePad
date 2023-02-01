@@ -17,16 +17,7 @@ help: Makefile
 	@sed -n 's/^##//p' $< | column -t -s ':' | sed -e 's/^/ /'  ## 可以通过##	name:	info去自动输出
 	@echo "$$USAGE_OPTIONS"
 
-##	format:	format code by gofmt,goimports,golines
-.PHONY:	format
-format:	tools.verify.golines tools.verify.goimports
-	@echo "===========> Formating codes"
-	@$(FIND) -type f -name '*.go'	|	$(XARGS) gofmt -s -w
-	@$(FIND) -type f -name '*.go' | $(XARGS) goimports -w -local $(ROOT_PACKAGE)
-	@$(FIND) -type f -name '*.go' | $(XARGS) golines -w --max-len=120 --reformat-tags --shorten-comments --ignore-generated .
-	@$(GO) mod edit -fmt
-
-##	gen:	Generate all necessary files, such as error code files.
-.PHONY: gen
-gen:
-	@$(MAKE) gen.run
+## genSwaggerDoc: generate swagger docs by swaggo/swag
+.PHONY: genSwaggerDoc
+genSwaggerDoc:
+	swag init -g ./cmd/notepad-apiserver/apiserver.go

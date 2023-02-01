@@ -1,18 +1,15 @@
 package main
 
 import (
-	"math/rand"
-	"os"
-	"runtime"
-	"time"
-
-	"github.com/earthaYan/notePad/internal/apiserver"
+	"log"
+	"net/http"
 )
 
 func main() {
-	rand.Seed(time.Now().UTC().UnixNano())
-	if len(os.Getenv("GOMAXPROCS")) == 0 {
-		runtime.GOMAXPROCS(runtime.NumCPU())
-	}
-	apiserver.NewApp("notepad-apiserver").Run()
+	http.HandleFunc("/hello", pong)
+	log.Println("start http server")
+	log.Fatal(http.ListenAndServe(":50052", nil))
+}
+func pong(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("pong"))
 }
