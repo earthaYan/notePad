@@ -10,6 +10,7 @@ include scripts/make-rules/golang.mk
 include scripts/make-rules/tools.mk 
 include scripts/make-rules/gen.mk 
 
+default:	genSwaggerDoc
 ##	help:	Show this help info.
 .PHONY: help
 help: Makefile
@@ -17,7 +18,7 @@ help: Makefile
 	@sed -n 's/^##//p' $< | column -t -s ':' | sed -e 's/^/ /'  ## 可以通过##	name:	info去自动输出
 	@echo "$$USAGE_OPTIONS"
 
-## genSwaggerDoc: generate swagger docs by swaggo/swag
+##	genSwaggerDoc: generate swagger docs by swaggo/swag
 .PHONY: genSwaggerDoc
 genSwaggerDoc:
 	swag init -g ./cmd/notepad-apiserver/apiserver.go
